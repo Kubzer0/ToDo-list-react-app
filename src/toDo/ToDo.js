@@ -11,21 +11,29 @@ class ToDo extends React.Component {
     createTask = (text) => (
         {
             taskText: '',
-            isCompleted: false
+            isCompleted: false,
+            key: Date.now() //good enough for app that does not use online database
         })
 
     addTask = () => this.setState({
         tasks: this.state.tasks.concat(
             this.createTask(this.state.newTaskText
-    ))})
+            ))
+    })
 
-        render() {
-    return (
-        <div>
-            ToDo
+    deleteTask = (taskKey) => this.setState({
+        tasks: this.state.tasks.filter(
+            task => task.key !== taskKey
+        )
+    })
+
+    render() {
+        return (
+            <div>
+                ToDo
             </div>
-    )
-}
+        )
+    }
 }
 
 export default ToDo
