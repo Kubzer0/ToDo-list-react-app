@@ -19,7 +19,7 @@ const List = (props) => (
                             return true
                     }
                 })
-                .filter(task => task.taskText.includes(props.filterText))
+                .filter(task => task.taskText.toLowerCase().replace(/\s/g,'').includes(props.filterText.toLowerCase().replace(/\s/g,'')))
                 .map(
                     task => (
                         <Task
