@@ -18,7 +18,8 @@ class ToDo extends React.Component {
     addTask = () => this.setState({
         tasks: this.state.tasks.concat(
             this.createTask(this.state.newTaskText
-            ))
+            )),
+            newTaskText: ""
     })
 
     deleteTask = (taskKey) => this.setState({
@@ -45,13 +46,23 @@ class ToDo extends React.Component {
     onCompletedClickHandler = () => this.setState({ chosenFilter: 'COMLETED' })
     onUnCompletedClickHandler = () => this.setState({ chosenFilter: 'UNCOMPLETED' })
 
-    onFilterTextChangeHandler = (value) => { this.setState({filterText: value}) }
-    onNewTaskTextChangeHandler = (value) => { this.setState({newTaskText: value}) }
+    onFilterTextChangeHandler = (event) => { this.setState({ filterText: event.target.value }) }
+    onNewTaskTextChangeHandler = (event) => { this.setState({ newTaskText: event.target.value }) }
 
     render() {
         return (
             <div>
-                ToDo
+                <input
+                typ='text'
+                value= {this.state.newTaskText}
+                onChange= {this.onNewTaskTextChangeHandler}
+                >
+                </input>
+                <button
+                onClick= {this.addTask}
+                >
+                    Add Task
+                </button>
             </div>
         )
     }
