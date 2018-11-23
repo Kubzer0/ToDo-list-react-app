@@ -1,5 +1,6 @@
 import React from 'react'
 import AddTask from './AddTask';
+import List from './List';
 
 class ToDo extends React.Component {
 
@@ -9,18 +10,18 @@ class ToDo extends React.Component {
         chosenFilter: 'ALL',
         newTaskText: ''
     }
-    createTask = (text) => (
-        {
-            taskText: '',
-            isCompleted: false,
-            key: Date.now() //good enough for app that does not use online database
-        })
+
+    createTask = (text) => ({
+        taskText: text,
+        isCompleted: false,
+        key: Date.now() //good enough for app that does not use online database
+    })
 
     addTask = () => this.setState({
         tasks: this.state.tasks.concat(
-            this.createTask(this.state.newTaskText
-            )),
-            newTaskText: ""
+            this.createTask(this.state.newTaskText)
+        ),
+        newTaskText: ""
     })
 
     deleteTask = (taskKey) => this.setState({
@@ -52,12 +53,15 @@ class ToDo extends React.Component {
 
     render() {
         return (<div>
-           <AddTask 
-           newTaskText = {this.state.newTaskText}
-           onNewTaskTextChangeHandler= {this.onNewTaskTextChangeHandler}
-           addTask= {this.addTask}
-           />
-           </div>
+            <AddTask
+                newTaskText={this.state.newTaskText}
+                onNewTaskTextChangeHandler={this.onNewTaskTextChangeHandler}
+                addTask={this.addTask}
+            />
+            <List
+                tasksList={this.state.tasks}
+            />
+        </div>
         )
     }
 }
