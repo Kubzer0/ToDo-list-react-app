@@ -6,7 +6,6 @@ const App = (props) => (
   <div>
     <ToDo 
     />
-    App
   </div>
 )
 
