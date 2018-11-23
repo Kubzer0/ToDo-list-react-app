@@ -7,18 +7,19 @@ const List = (props) => (
         {props.tasksList &&
             props.tasksList.map &&
             props.tasksList
-            .filter(task => {
-                switch (props.chosenFilter) {
-                    case 'ALL':
-                        return true
-                    case 'COMPLETED':
-                        return task.isCompleted
-                    case 'UNCOMPLETED':
-                        return !task.isCompleted
-                    default:
-                        return true
-                }
-            })
+                .filter(task => {
+                    switch (props.chosenFilter) {
+                        case 'ALL':
+                            return true
+                        case 'COMPLETED':
+                            return task.isCompleted
+                        case 'UNCOMPLETED':
+                            return !task.isCompleted
+                        default:
+                            return true
+                    }
+                })
+                .filter(task => task.taskText.includes(props.filterText))
                 .map(
                     task => (
                         <Task
