@@ -1,13 +1,15 @@
 import React from 'react'
-import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-     <div>
-      </div>
-    )
-}
-}
+import ToDo from'./toDo'
+
+const App = (props) => (
+  <div>
+    <ToDo 
+    />
+    App
+  </div>
+)
+
+
 
 export default App
