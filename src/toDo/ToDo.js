@@ -7,21 +7,26 @@ import Search from './Search'
 
 class ToDo extends React.Component {
 
-    state = JSON.getItem('to-do-list-state') || {
-        tasks: [],
-        filterText: '',
-        chosenFilter: 'ALL',
-        newTaskText: ''
-    }
+    state = (
+        JSON.parse(localStorage.getItem('to-do-list-state'))
+        ||
+        {
+            tasks: [],
+            filterText: '',
+            chosenFilter: 'ALL',
+            newTaskText: ''
+        }
+    )
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.saveInLocalStorage()
     }
 
-    saveInLocalStorage =() => localStorage.setItem(
-        'to-do-list-state,',
-        JSON.stringify(this.state)
-    )
+    saveInLocalStorage = () =>
+        localStorage.setItem(
+            'to-do-list-state',
+            JSON.stringify(this.state)
+        )
 
     createTask = (text) => ({
         taskText: text,
@@ -57,7 +62,7 @@ class ToDo extends React.Component {
     })
 
     onAllClickHandler = () => this.setState({ chosenFilter: 'ALL' })
-    onCompletedClickHandler = () => this.setState({ chosenFilter: 'COMLETED' })
+    onCompletedClickHandler = () => this.setState({ chosenFilter: 'COMPLETED' })
     onUnCompletedClickHandler = () => this.setState({ chosenFilter: 'UNCOMPLETED' })
 
     onFilterTextChangeHandler = (event) => { this.setState({ filterText: event.target.value }) }
@@ -73,11 +78,14 @@ class ToDo extends React.Component {
             <Search
                 filterText={this.state.filterText}
                 onFilterTextChangeHandler={this.onFilterTextChangeHandler}
+                chosenFilter={this.state.chosenFilter}
                 onAllClickHandler={this.onAllClickHandler}
                 onCompletedClickHandler={this.onCompletedClickHandler}
                 onUnCompletedClickHandler={this.onUnCompletedClickHandler}
             />
             <List
+                filterText={this.state.filterText}
+                chosenFilter={this.state.chosenFilter}
                 tasksList={this.state.tasks}
                 completeTask={this.completeTask}
                 deleteTask={this.deleteTask}

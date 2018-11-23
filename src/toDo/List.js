@@ -6,16 +6,29 @@ const List = (props) => (
     <div>
         {props.tasksList &&
             props.tasksList.map &&
-            props.tasksList.map(
-                task => (
-                    <Task
-                        key={task.key}
-                        task={task}
-                        completeTask ={props.completeTask}
-                        deleteTask= {props.deleteTask}
-                    />
+            props.tasksList
+            .filter(task => {
+                switch (props.chosenFilter) {
+                    case 'ALL':
+                        return true
+                    case 'COMPLETED':
+                        return task.isCompleted
+                    case 'UNCOMPLETED':
+                        return !task.isCompleted
+                    default:
+                        return true
+                }
+            })
+                .map(
+                    task => (
+                        <Task
+                            key={task.key}
+                            task={task}
+                            completeTask={props.completeTask}
+                            deleteTask={props.deleteTask}
+                        />
+                    )
                 )
-            )
         }
     </div>
 )
