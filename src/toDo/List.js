@@ -11,6 +11,8 @@ const List = (props) => (
                     <Task
                         key={task.key}
                         task={task}
+                        completeTask ={props.completeTask}
+                        deleteTask= {props.deleteTask}
                     />
                 )
             )
