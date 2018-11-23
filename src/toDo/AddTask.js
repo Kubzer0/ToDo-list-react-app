@@ -15,13 +15,14 @@ const AddTask = (props) => (
             value={props.newTaskText}
             onChange={props.onNewTaskTextChangeHandler}
         />
-        
+
         <RaisedButton
+            primary={true}
             onClick={props.addTask}
-            label = 'Add Task'
-            style= {style.button}
+            label='Add Task'
+            style={style.button}
         />
-            
+
 
     </div>
 )

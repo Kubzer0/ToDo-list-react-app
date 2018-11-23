@@ -15,25 +15,28 @@ const Search = (props) => (<div>
         value={props.filterText}
         onChange={props.onFilterTextChangeHandler}
     />
-    
+
     <RaisedButton
+        primary={true}
         disabled={props.chosenFilter === 'ALL'}
         onClick={props.onAllClickHandler}
         label='ALL'
-        style= {style.button}
+        style={style.button}
     />
     <RaisedButton
+        primary={true}
         disabled={props.chosenFilter === 'COMPLETED'}
         onClick={props.onCompletedClickHandler}
         label="COMPLETED"
-        style= {style.button}
+        style={style.button}
     />
 
     <RaisedButton
+        primary={true}
         disabled={props.chosenFilter === 'UNCOMPLETED'}
         onClick={props.onUnCompletedClickHandler}
         label='UNCOMPLETED'
-        style= {style.button}
+        style={style.button}
     />
 </div>
 )
