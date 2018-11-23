@@ -1,32 +1,26 @@
 import React from 'react'
-import RaisedButton from 'material-ui/RaisedButton'
+import DeleteIcon from 'material-ui/svg-icons/action/delete'
+import IconButton from 'material-ui/IconButton'
+import { ListItem } from 'material-ui/List'
 
 
-const completedStyle ={
+const completedStyle = {
     textDecoration: 'line-through',
-}
-const style = {
-    button: {
-        margin: 12
-    }
 }
 
 const Task = (props) => (
-    <div>
-        <div
-        onClick = {() => props.completeTask(props.task.key)}
-        style ={props.task.isCompleted ? completedStyle : {}}
-        >
-        {props.task.taskText}
-        </div>
-        <RaisedButton
-        onClick = {()=>props.deleteTask(props.task.key)}
-        label= "Delete"
-        style = {style.button}
-        primary = {true}
-        />
-        
-    </div>
+    <ListItem
+        style={props.task.isCompleted ? completedStyle : {}}
+        onClick={() => props.completeTask(props.task.key)}
+        primaryText={props.task.taskText}
+        rightIconButton={
+            <IconButton>
+                <DeleteIcon
+                    onClick={() => props.deleteTask(props.task.key)}
+                />
+            </IconButton>
+        }
+    />
 )
 
 export default Task
