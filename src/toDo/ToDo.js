@@ -1,4 +1,5 @@
 import React from 'react'
+import AddTask from './AddTask';
 
 class ToDo extends React.Component {
 
@@ -50,20 +51,13 @@ class ToDo extends React.Component {
     onNewTaskTextChangeHandler = (event) => { this.setState({ newTaskText: event.target.value }) }
 
     render() {
-        return (
-            <div>
-                <input
-                typ='text'
-                value= {this.state.newTaskText}
-                onChange= {this.onNewTaskTextChangeHandler}
-                >
-                </input>
-                <button
-                onClick= {this.addTask}
-                >
-                    Add Task
-                </button>
-            </div>
+        return (<div>
+           <AddTask 
+           newTaskText = {this.state.newTaskText}
+           onNewTaskTextChangeHandler= {this.onNewTaskTextChangeHandler}
+           addTask= {this.addTask}
+           />
+           </div>
         )
     }
 }
