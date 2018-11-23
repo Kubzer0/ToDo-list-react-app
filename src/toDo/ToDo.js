@@ -4,6 +4,11 @@ import React from 'react'
 import AddTask from './AddTask';
 import List from './List';
 import Search from './Search'
+import Paper from 'material-ui/Paper'
+
+const style = {
+    paper: {margin : 20}
+}
 
 class ToDo extends React.Component {
 
@@ -69,7 +74,10 @@ class ToDo extends React.Component {
     onNewTaskTextChangeHandler = (event) => { this.setState({ newTaskText: event.target.value }) }
 
     render() {
-        return (<div>
+        return (
+        <Paper
+        style= {style.paper}
+        >
             <AddTask
                 newTaskText={this.state.newTaskText}
                 onNewTaskTextChangeHandler={this.onNewTaskTextChangeHandler}
@@ -90,7 +98,7 @@ class ToDo extends React.Component {
                 completeTask={this.completeTask}
                 deleteTask={this.deleteTask}
             />
-        </div>
+        </Paper>
         )
     }
 }

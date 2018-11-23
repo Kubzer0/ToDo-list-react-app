@@ -1,31 +1,40 @@
 import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+
+const style = {
+    button: {
+        margin: 12
+    }
+}
 
 const Search = (props) => (<div>
-    <input
+    <TextField
         type='text'
         placeholder='filter tasks'
         value={props.filterText}
         onChange={props.onFilterTextChangeHandler}
-    >
-    </input>
-    <button
+    />
+    
+    <RaisedButton
         disabled={props.chosenFilter === 'ALL'}
         onClick={props.onAllClickHandler}
-    >
-        ALL
-    </button>
-    <button
+        label='ALL'
+        style= {style.button}
+    />
+    <RaisedButton
         disabled={props.chosenFilter === 'COMPLETED'}
         onClick={props.onCompletedClickHandler}
-    >
-        COMPLETED
-    </button>
-    <button
+        label="COMPLETED"
+        style= {style.button}
+    />
+
+    <RaisedButton
         disabled={props.chosenFilter === 'UNCOMPLETED'}
         onClick={props.onUnCompletedClickHandler}
-    >
-        UNCOMPLETED
-    </button>
+        label='UNCOMPLETED'
+        style= {style.button}
+    />
 </div>
 )
 
